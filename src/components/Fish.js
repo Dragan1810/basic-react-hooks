@@ -15,7 +15,7 @@ function Fish(props) {
       <p>{desc}</p>
       <button
         disabled={!isAvailable}
-        onClick={() => this.props.addToOrder(props.index)}
+        onClick={() => props.addToOrder(props.index)}
       >
         {isAvailable ? "Add To Order" : "Sold Out!"}
       </button>
