@@ -11,27 +11,24 @@ function App(props) {
   const [fishes, setFishes] = useState({});
   const [order, setOrder] = useState({});
 
-  useEffect(
-    () => {
-      const { params } = props.match;
-      // first reinstate our localStorage
-      const localStorageRef = localStorage.getItem(params.storeId);
-      if (localStorageRef) {
-        setOrder(JSON.parse(localStorageRef));
-      }
-      /*
+  useEffect(() => {
+    const { params } = props.match;
+    // first reinstate our localStorage
+    const localStorageRef = localStorage.getItem(params.storeId);
+    if (localStorageRef) {
+      setOrder(JSON.parse(localStorageRef));
+    }
+    /*
     this.ref = base.syncState(`${params.storeId}/fishes`, {
       context: this,
       state: "fishes"
     });
 */
-      //update
-      localStorage.setItem(props.match.params.storeId, JSON.stringify(order));
+    //update
+    localStorage.setItem(props.match.params.storeId, JSON.stringify(order));
 
-      // return () => base.removeBinding(this.ref);
-    },
-    [props.match]
-  );
+    // return () => base.removeBinding(this.ref);
+  }, []);
 
   const addFish = fish => {
     const _fishes = { ...fishes };
