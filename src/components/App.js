@@ -24,27 +24,29 @@ function App(props) {
       state: "fishes"
     });
 */
-    //update
-    localStorage.setItem(props.match.params.storeId, JSON.stringify(order));
 
     // return () => base.removeBinding(this.ref);
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem(props.match.params.storeId, JSON.stringify(order));
+  }, []);
+
   const addFish = fish => {
     const _fishes = { ...fishes };
-    fishes[`fish${Date.now()}`] = fish;
+    _fishes[`fish${Date.now()}`] = fish;
     setFishes(_fishes);
   };
 
   const updateFish = (key, updatedFish) => {
     const _fishes = { ...fishes };
-    fishes[key] = updatedFish;
+    _fishes[key] = updatedFish;
     setFishes(_fishes);
   };
 
   const deleteFish = key => {
     const _fishes = { ...fishes };
-    fishes[key] = null;
+    _fishes[key] = null;
     setFishes(_fishes);
   };
 
@@ -53,17 +55,18 @@ function App(props) {
   };
 
   const addToOrder = key => {
+    console.log("Am here");
     const _order = { ...order };
-    order[key] = order[key] + 1 || 1;
+    _order[key] = _order[key] + 1 || 1;
     setOrder(_order);
   };
 
   const removeFromOrder = key => {
     const _order = { ...order };
-    delete order[key];
+    delete _order[key];
     setOrder(_order);
   };
-
+  console.log(order);
   return (
     <div className="catch-of-the-day">
       <div className="menu">
